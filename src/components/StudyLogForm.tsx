@@ -6,6 +6,7 @@ import {
   WEEK_DAYS,
 } from "../constants";
 
+
 type StudyFormProps = {
   onSubmit: (log: Omit<StudyLog, "id">) => void;
 };
@@ -54,12 +55,12 @@ const StudyForm = memo((props: StudyFormProps) => {
       <form className="space-y-3" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-3 space-y-3">
           {/* 曜日選択 */}
-          <div>
+          <div className="w-full relative before:content-[url('/src/assets/chevron-down.svg')] before:absolute before:right-2 before:leading-0 before:top-1/2 before:-translate-y-1/2 before:size-fit before:pointer-events-none">
             <select
               id="day"
               value={day}
               onChange={(e) => setDay(e.target.value as StudyLog["day"])}
-              className="block text-sm text-gray-700 w-full rounded-md p-2 border shadow-sm "
+              className="relativeblock text-sm text-gray-700 w-full rounded-md p-2 border shadow-sm appearance-none"
             >
               <option value="">曜日</option>
               {WEEK_DAYS.map((day) => (
@@ -70,14 +71,14 @@ const StudyForm = memo((props: StudyFormProps) => {
             </select>
           </div>
           {/* カテゴリー選択 */}
-          <div>
+          <div className="w-full relative before:content-[url('/src/assets/chevron-down.svg')] before:absolute before:right-2 before:leading-0 before:top-1/2 before:-translate-y-1/2 before:size-fit before:pointer-events-none">
             <select
               id="category"
               value={category}
               onChange={(e) =>
                 setCategory(e.target.value as StudyLog["category"])
               }
-              className="block w-full text-sm text-gray-700 rounded-md p-2 border shadow-sm "
+              className="block w-full text-sm text-gray-700 rounded-md p-2 border shadow-sm appearance-none"
             >
               <option value="">学習トピック</option>
               {CATEGORIE_VARIANTS.map(({ category }) => (
