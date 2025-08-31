@@ -39,3 +39,16 @@ const filterByDay = (logs: StudyLog[], day: string) => {
 export const getTotalMinutesByDay = (logs: StudyLog[], day: string) => {
   return getTotalMinutes(filterByDay(logs, day));
 };
+
+// logの配列とカテゴリーを受け取り、一致するログのみを抽出する関数
+const filterByCategory = (logs: StudyLog[], category: string) => {
+  return logs.filter((log) => log.category === category);
+};
+
+// logの配列とカテゴリーを受け取り、一致するカテゴリーの合計時間を算出する関数
+export const getTotalMinutesByCategory = (
+  logs: StudyLog[],
+  category: string
+) => {
+  return getTotalMinutes(filterByCategory(logs, category));
+};
