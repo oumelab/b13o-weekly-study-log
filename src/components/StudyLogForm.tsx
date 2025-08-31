@@ -115,7 +115,7 @@ const StudyForm = memo((props: StudyFormProps) => {
                   type="button"
                   onClick={() => setMotivation(rank as StudyLog["motivation"])}
                   key={rank}
-                  className={`w-full rounded-xl border p-6 ${
+                  className={`w-full rounded-xl border p-6 grid place-items-center ${
                     motivation === rank && "bg-gray-100"
                   }`}
                 >

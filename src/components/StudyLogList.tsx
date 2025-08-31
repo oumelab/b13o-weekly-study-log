@@ -1,13 +1,13 @@
-import { Trash2 } from "lucide-react";
-import type { StudyLog } from "../types";
-import { getCategoryIcon, getMotivationObject } from "../utils";
+import {Trash2} from "lucide-react";
+import type {StudyLog} from "../types";
+import {getCategoryIcon, getMotivationObject} from "../utils";
 
 interface StudyLogListProps {
   logs: StudyLog[];
   onDelete: (id: string) => void;
 }
 
-function StudyLogList({ logs, onDelete }: StudyLogListProps) {
+function StudyLogList({logs, onDelete}: StudyLogListProps) {
   return (
     <div className="p-6 border-gray-400 border rounded-xl bg-white/50 backdrop-blur-sm">
       <h2 className="text-lg font-semibold mb-4">Study Log History</h2>
@@ -21,8 +21,8 @@ function StudyLogList({ logs, onDelete }: StudyLogListProps) {
               key={log.id}
               className="p-4 rounded-lg border border-gray-200 bg-white/80 hover:bg-white transition-colors"
             >
-              <div className="flex justify-between items-start">
-                <div className="space-y-1">
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between space-y-1">
                   <div className="flex items-center gap-2">
                     <p className="text-xl">{categoryIcon}</p>
                     <span className="font-medium capitalize">
@@ -32,9 +32,6 @@ function StudyLogList({ logs, onDelete }: StudyLogListProps) {
                       {log.day}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600">{log.memo}</p>
-                </div>
-                <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
                     {motivationObject && (
                       <motivationObject.Icon
@@ -42,16 +39,19 @@ function StudyLogList({ logs, onDelete }: StudyLogListProps) {
                         }`}
                       />
                     )}
-                    <span className="text-sm font-medium">
+                    <span className="flex-1 text-sm font-medium">
                       {log.minutes} min
                     </span>
+                    <button
+                      onClick={() => onDelete(log.id)}
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
-                  <button
-                    onClick={() => onDelete(log.id)}
-                    className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-gray-600">{log.memo}</p>
                 </div>
               </div>
             </div>
