@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useCallback,useState } from 'react'
 import { INITIAL_LOGS } from "./constants";
 import type { StudyLog } from "./types";
 import StudyLogList from './components/StudyLogList';
 import TotalAnalytics from './components/TotalAnalytics';
 import CategoryData from './components/CategoryData';
+import StudyForm from './components/StudyLogForm';
 
 
 function App() {
   // 学習ログの状態管理
   const [logs, setLogs] = useState<StudyLog[]>(INITIAL_LOGS);
 
-  const addLog = (log: Omit<StudyLog, "id">) => {
+  const addLog = useCallback((log: Omit<StudyLog, "id">) => {
     setLogs((prev) => [
       ...prev,
       {
@@ -18,7 +19,7 @@ function App() {
         id: crypto.randomUUID(),
       },
     ]);
-  };
+  }, []);
 
   const deleteLog = (id: string) => {
     setLogs((prev) => prev.filter((log) => log.id !== id));
@@ -42,7 +43,9 @@ function App() {
             <TotalAnalytics logs={logs} />
             <StudyLogList logs={logs} onDelete={deleteLog} />
           </div>
-          <div className="w-1/4 h-full">{/* ログ入力フォーム */}</div>
+          <div className="w-1/4 h-full">
+            <StudyForm onSubmit={addLog} />
+          </div>
         </main>
       </div>
     </>
