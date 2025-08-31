@@ -56,9 +56,9 @@ const TotalAnalytics = ({logs}: TotalAnalyticsProps) => {
       <div className="h-[300px]">
         {/*  ↓自動でレスポンシブに対応*/}
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={dailyData}>
-            <XAxis dataKey="day" />
-            <YAxis />
+          <BarChart data={dailyData} margin={{top: 20, right: 20, bottom: 0, left: 0}}>
+            <XAxis dataKey="day" tickMargin={8} />
+            <YAxis tickMargin={8} />
             <Tooltip />
             <Bar dataKey="minutes" fill="#3b82f6" />
           </BarChart>
