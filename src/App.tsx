@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { INITIAL_LOGS } from "./constants";
 import type { StudyLog } from "./types";
 import StudyLogList from './components/StudyLogList';
+import TotalAnalytics from './components/TotalAnalytics';
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
         <main className="flex gap-12">
           <div className="w-3/4 h-full space-y-6">
             {/* 3つのカード */}
-            {/* グラフ */}
+            <TotalAnalytics logs={logs} />
             <StudyLogList logs={logs} onDelete={deleteLog} />
           </div>
           <div className="w-1/4 h-full">{/* ログ入力フォーム */}</div>
